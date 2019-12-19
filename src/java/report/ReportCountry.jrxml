@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportCountry" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d5371b27-0e07-47cb-a5cb-72a4d5a46793">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="hql">
+		<![CDATA[from Country order by 1]]>
+	</queryString>
+	<field name="countryId" class="java.lang.String"/>
+	<field name="countryName" class="java.lang.String"/>
+	<field name="locationList" class="java.util.List"/>
+	<field name="regionId" class="models.Region"/>
+	<group name="Group1">
+		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/15)]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/5)]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="554" height="95" backcolor="#000000" uuid="9aff265e-e116-44b5-aae1-0d6cc446b49a"/>
+				<staticText>
+					<reportElement style="Title" x="21" y="29" width="370" height="66" uuid="53e5c82b-4394-41fe-bf8d-9791e981bc1f"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Country]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="554" height="32" forecolor="#000000" backcolor="#CC0000" uuid="3802b2e7-80d2-4bae-9121-2f3897a9114f"/>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="20" forecolor="#000000" backcolor="#000000" uuid="1e48ce2f-db92-4c30-bf8a-56ac121980bd"/>
+				<staticText>
+					<reportElement x="0" y="0" width="81" height="20" forecolor="#FFFFFF" uuid="4c80d165-5e2e-4737-9763-a964693aa651"/>
+					<text><![CDATA[Country ID]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="81" y="0" width="194" height="20" forecolor="#FFFFFF" uuid="de94e8eb-2ac4-4dcd-b2c7-c204b77c151a"/>
+					<text><![CDATA[Country Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="275" y="0" width="280" height="20" forecolor="#FFFFFF" uuid="8b9cd3f3-6af2-48ab-87d1-c16fa55e95c6"/>
+					<text><![CDATA[Region Name]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="34eddd0b-8add-4e29-b9d9-8b02d355963e"/>
+			</frame>
+			<textField>
+				<reportElement x="275" y="1" width="280" height="20" uuid="9071d7d7-e865-4b54-a1b2-0f517b149c81"/>
+				<textFieldExpression><![CDATA[$F{regionId}.getRegionName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="1" width="195" height="20" uuid="048f28a7-623e-46ed-afd9-9afb15ef9b54"/>
+				<textFieldExpression><![CDATA[$F{countryName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="1" width="81" height="20" uuid="1a073165-bd27-4b0e-8bd0-57eceae545a4"/>
+				<textFieldExpression><![CDATA[$F{countryId}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="20" forecolor="#000000" backcolor="#000000" uuid="d886ae73-a83c-43fe-a19a-254b6172cd1d"/>
+				<textField>
+					<reportElement x="435" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="c3bd4a9a-722f-4c6e-98f6-d0011b64858f"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement x="515" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="14c7f70f-7e6d-4dd5-9109-d47bf17cabf6"/>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="0" y="0" width="144" height="20" forecolor="#FFFFFF" uuid="24acd6a0-c8dd-41c1-a2db-241b44a67df9"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

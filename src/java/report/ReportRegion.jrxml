@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c0efa1e6-1352-4738-a3fc-6c0288c7a527">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="hql">
+		<![CDATA[from Region order by 1]]>
+	</queryString>
+	<field name="countryList" class="java.util.List"/>
+	<field name="regionId" class="java.math.BigDecimal"/>
+	<field name="regionName" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="79" backcolor="#006666" uuid="f9976313-3580-4eee-a387-609cb96f0197"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="17" y="12" width="275" height="67" forecolor="#FFFFFF" uuid="09a08a1a-6bfe-4bd1-b416-7f9a511ba17b"/>
+				<textElement>
+					<font size="48"/>
+				</textElement>
+				<text><![CDATA[Region]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="20" backcolor="#000000" uuid="f21fbd40-869e-436e-bd19-46b1fb5a9367"/>
+			</rectangle>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="352" y="0" width="202" height="20" forecolor="#FFFFFF" uuid="c1332609-b469-4b12-b5a4-def1ea20fa08"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="554" height="20" backcolor="#006666" uuid="83c7e678-72ed-417a-ba81-8551e690cf92"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="112" height="20" forecolor="#FFFFFF" uuid="2221d537-e809-49e1-932e-1de9109b8cd0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Region ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="0" width="443" height="20" forecolor="#FFFFFF" uuid="d30df62c-4be1-4187-a9ff-774d1fb3ace1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Region Name]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="112" height="20" uuid="44c6a95a-dbfb-4645-b976-8fac50d18488"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{regionId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="0" width="442" height="20" uuid="3688f9c9-b344-4fe6-bbe1-90a6b09f2535"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{regionName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="554" height="20" backcolor="#000000" uuid="1e066092-af3d-4484-9125-ccdb7b538fef"/>
+			</rectangle>
+			<textField>
+				<reportElement x="435" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="1ff4c4d3-4701-4a1c-b311-fb6dcf8f784d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="ec4642d4-d1b7-4f01-a1df-b1a4cfc6486b"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

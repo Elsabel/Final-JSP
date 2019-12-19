@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0d7d1916-b2c6-410d-a96e-01f2c2205471">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="hql">
+		<![CDATA[FROM Employee]]>
+	</queryString>
+	<field name="commissionPct" class="java.math.BigDecimal"/>
+	<field name="departmentId" class="models.Department"/>
+	<field name="departmentList" class="java.util.List"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="employeeId" class="java.lang.Integer"/>
+	<field name="employeeList" class="java.util.List"/>
+	<field name="firstName" class="java.lang.String"/>
+	<field name="hireDate" class="java.util.Date"/>
+	<field name="jobId" class="models.Job"/>
+	<field name="lastName" class="java.lang.String"/>
+	<field name="managerId" class="models.Employee"/>
+	<field name="phoneNumber" class="java.lang.String"/>
+	<field name="salary" class="java.math.BigDecimal"/>
+	<variable name="jobId_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{jobId}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="102" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="66" backcolor="#660066" uuid="06b75b6f-2d1e-416b-9e75-6042e31b3c9c"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="370" height="66" uuid="bec4e12b-032a-43d3-87a7-0d98ddf0a8f6"/>
+					<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Employee Report]]></text>
+				</staticText>
+				<image>
+					<reportElement x="702" y="0" width="95" height="66" uuid="dbcc229a-7078-4838-a79f-247fffe68ec9"/>
+					<imageExpression><![CDATA["D:\\MII\\Latihan_ORM\\src\\report\\employee.png"]]></imageExpression>
+				</image>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="70" width="802" height="32" forecolor="#000000" backcolor="#CCCCFF" uuid="5a4a6e91-c56f-47a7-bf52-2b83939080f0"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="587" y="12" width="170" height="20" forecolor="#000000" backcolor="#000000" uuid="bce05513-b7da-456e-abd6-07f63f8c1c83"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="3" width="40" height="20" uuid="4a9bd551-a491-4c00-8e2e-e978c9f5a5ea"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="42" y="3" width="100" height="20" uuid="665fecc2-85fd-4500-a8cc-8318fadaab3f"/>
+				<text><![CDATA[FIRST NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="3" width="100" height="20" uuid="dbce51df-4b20-4b4e-b006-83766adf3d31"/>
+				<text><![CDATA[LAST NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="242" y="3" width="100" height="20" uuid="4cc7870f-4e3b-4eba-a427-028f41215c5b"/>
+				<text><![CDATA[EMAIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="418" y="3" width="84" height="20" uuid="a243c4a3-f710-4d2b-bf6a-b53c1eafa34e"/>
+				<text><![CDATA[SALARY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="702" y="3" width="100" height="20" uuid="795ee750-28dd-4fa0-a10b-91290e182104"/>
+				<text><![CDATA[HIRE DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="502" y="3" width="100" height="20" uuid="9a03e652-e551-4c97-8f67-e7a7db59b2b6"/>
+				<text><![CDATA[JOB]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="602" y="3" width="100" height="20" uuid="3a10e83c-e865-4e90-b53f-821aefcc55db"/>
+				<text><![CDATA[DEPARTMENT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="3" width="76" height="20" uuid="63345712-dba0-437b-8280-0b3d5af54b6c"/>
+				<text><![CDATA[MANAGER]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="48" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="797" height="18" uuid="3576764c-3eff-4cc0-ab23-2b3f84da35f2"/>
+			</frame>
+			<textField>
+				<reportElement x="2" y="0" width="40" height="20" uuid="783b3bf7-729b-43ef-a24d-b499f950467d"/>
+				<textFieldExpression><![CDATA[$F{employeeId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="0" width="100" height="20" uuid="de64118d-92ed-477b-857e-0111cf9a6df9"/>
+				<textFieldExpression><![CDATA[$F{lastName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="242" y="0" width="100" height="20" uuid="0f2ba5cd-37e5-440b-b8b1-5f6660415829"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="418" y="0" width="84" height="20" uuid="280593c8-b92b-4667-a9d8-e872a7c4bc99"/>
+				<textFieldExpression><![CDATA[$F{salary}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="702" y="0" width="100" height="20" uuid="9bc3e3ae-4ed4-492f-8f22-9f23e862e419"/>
+				<textFieldExpression><![CDATA[$F{hireDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="502" y="0" width="100" height="20" uuid="5e918a0f-2bf4-43b4-bee0-d0b3e52b8d01"/>
+				<textFieldExpression><![CDATA[""+$F{jobId}.getJobTitle()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="602" y="0" width="100" height="20" uuid="d43c27c7-1615-487e-a597-b2bf78c7d148"/>
+				<textFieldExpression><![CDATA[$F{departmentId}.getDepartmentName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="42" y="0" width="100" height="20" uuid="8bf58a23-db20-4ed0-a4fe-331427cbf620"/>
+				<textFieldExpression><![CDATA[$F{firstName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="0" width="76" height="20" uuid="21e522db-5366-42c7-ae0f-cfc26f033f32"/>
+				<textFieldExpression><![CDATA[$F{managerId}.getFirstName()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="2599a7c2-ca2f-4003-86f9-61521065953b"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="25" forecolor="#D0B48E" backcolor="#000000" uuid="feca9278-8a4f-46e7-93c9-5fbe834c7bf2"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="757" y="3" width="40" height="20" forecolor="#FFFFFF" uuid="e76d5e18-6003-4d76-b69d-e14b1c4a0bd4"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="677" y="3" width="80" height="20" forecolor="#FFFFFF" uuid="760fd029-80e9-41a0-9c7d-70e8879be621"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="3" width="197" height="20" forecolor="#FFFFFF" uuid="261c391a-cbe6-4142-9a80-0a03a76c6e79"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
