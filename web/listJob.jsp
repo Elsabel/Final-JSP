@@ -64,17 +64,18 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-12 mb-3">
                                 <h3>Job Data</h3>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-3">
                                 <button data-toggle="modal" data-target="#additem" class="btn btn-primary btn-block">
                                     <i class="fas fa-plus"></i> Add Item</button>
                             </div>
-                             <button class="au-btn au-btn-icon au-btn--blue">
-                                 <a href="jobServlet?action=print" 
-                                       data-toggle="tooltip" data-placement="top" 
-                                       title="Print"><i class="fas fa-print" style=""></i>Print</a></button>
+                            <div class="col-3 offset-6">
+                                <a href="regionServlet?action=print" 
+                                   data-toggle="tooltip" data-placement="top" class="btn btn-secondary btn-block"
+                                   title="Print"><i class="fas fa-print" style=""></i> Print</a>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -86,7 +87,7 @@
                                     <th>Title</th>
                                     <th>Min Salary</th>
                                     <th>Max Salary</th>
-                                    <th class="text-right">Action</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,7 +97,7 @@
                                     <td><%= job.getJobTitle()%></td>
                                     <td><%=job.getMinSalary()%></td>
                                     <td><%= job.getMaxSalary()%></td>
-                                    <td class="text-right">
+                                    <td class="text-center">
                                         <a href="<%=job.getJobId()%>" class="view_data"
                                            data-toggle="modal" data-placement="top" id="<%=job.getJobId()%>" data-target="#editModal"
                                            title="Edit"><i class="fas fa-edit fa-lg" style="color:#26a65b;"></i>                                     
@@ -154,15 +155,14 @@
                             <input id="maxSalary" min="0" type="number" class="form-control" name="maxSalary" placeholder="Maximal Salary" required>
                         </div>
                     </div>
-                    <div class="row form-group">
-                        <div class="col-12">
-                            <center>
-                                <input type="submit" name="submit" value="Save" class="btn btn-primary"/>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button> 
-                            </center>
-                        </div>
-                    </div>
                 </form>
+            </div>
+            <div class="modal-footer">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-sm" style="float: right;">
+                        <i class="fas fa-save"></i> Save
+                    </button>    
+                </div>
             </div>
         </div>
     </div>
@@ -175,12 +175,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Edit Form Job</h4>
+                <h4 class="modal-title" id="myModalLabel">Edit Job</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body" id="data">
-            </div>
-            <div class="modal-footer">
             </div>
         </div>
     </div>
@@ -191,7 +189,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#listItem').DataTable(
-
                 );
     });
 
@@ -212,6 +209,26 @@
             }
         });
     });
+
+
+    $("#minSalary, #maxSalary").change(function (e) {
+        var lil = $("#minSalary").val();
+        var big = $("#maxSalary").val();
+        $('#lil').text(lil);
+        $('#big').text(big);
+        if (lil > big) {
+            var targ = $(e.target);
+            if (targ.is("#maxSalary")) {
+                window.alert("Max Salary must be greater than Min Salary");
+                $('#maxSalary').val(lil);
+            }
+            if (targ.is("#minSalary")) {
+                window.alert("Min Salary must be less than Max Salary");
+                $('#minSalary').val(big);
+            }
+        }
+    });
+
 
     $(document).ready(function () {
         $("body").on('click', '.view_data', function () {

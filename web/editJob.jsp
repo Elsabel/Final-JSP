@@ -29,11 +29,13 @@
             <input type="number" min="0" id="maxSalary" value="<%= request.getAttribute("maxSalary")%>" name="maxSalary" placeholder="Enter Maximal Salary..." class="form-control" required="">
         </div>
     </div>
-    <center>
-        <button class="btn btn-primary" type="submit" name="submit"><i class="fas fa-save"></i> Update</button>
-        <a href="jobServlet?action=list" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-window-close"></i> Cancel</a>
-    </center>
 </form>
-        
-       
-       
+<div class="modal-footer">
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary btn-sm" style="float: right;">
+            <i class="fas fa-save"></i> Save
+        </button>    
+    </div>
+</div>
+
+

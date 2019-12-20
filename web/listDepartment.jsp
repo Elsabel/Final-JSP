@@ -63,17 +63,18 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-12 mb-3">
                                 <h3>Department Data</h3>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-3">
                                 <button data-toggle="modal" data-target="#additem" class="btn btn-primary btn-block">
                                     <i class="fas fa-plus"></i> Add Item</button>
                             </div>
-                             <button class="au-btn au-btn-icon au-btn--blue">
-                                 <a href="departmentServlet?action=print" 
-                                       data-toggle="tooltip" data-placement="top" 
-                                       title="Print"><i class="fas fa-print" style=""></i>Print</a></button>
+                            <div class="col-3 offset-6">
+                                <a href="regionServlet?action=print" 
+                                   data-toggle="tooltip" data-placement="top" class="btn btn-secondary btn-block"
+                                   title="Print"><i class="fas fa-print" style=""></i> Print</a>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -85,7 +86,7 @@
                                     <th>Name</th>
                                     <th>Manager</th>
                                     <th>City</th>
-                                    <th class="text-right">Action</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -102,7 +103,7 @@
                                         %>
                                     </td>
                                     <td><%= department.getLocationId().getCity()%></td>
-                                    <td class="text-right">
+                                    <td class="text-center">
                                         <a href="<%= department.getDepartmentId()%>" class="view_data"
                                            data-toggle="modal" data-target="#editModal" data-placement="top" id="<%= department.getDepartmentId()%>"
                                            title="Edit">
@@ -138,14 +139,6 @@
             </div>
             <div class="modal-body">
                 <form action="departmentServlet?action=insert" method="post" class="form-horizontal">
-                    <!--                    <div class="row form-group">
-                                            <div class="col col-md-3">
-                                                <label for="hf-email" class=" form-control-label">Id</label>
-                                            </div>
-                                            <div class="col-12 col-md-9">
-                                                <input type="text" id="idDepartment" name="idDepartment" placeholder="Enter Department Id" class="form-control">
-                                            </div>
-                                        </div>-->
                     <div class="row form-group">
                         <div class="col col-md-3">
                             <label for="hf-password" class=" form-control-label">Name</label>
@@ -183,16 +176,15 @@
                             </select>
                         </div>
                     </div>
-                    <center>
-                        <input type="submit" name="submit" value="Save" class="btn btn-primary"/>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    </center>
                 </form>
             </div>
-            <!--            <div class="modal-footer">
-            
-                            <button type="button" class="btn btn-primary">Confirm</button>
-                        </div>-->
+            <div class="modal-footer">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-sm" style="float: right;">
+                        <i class="fas fa-save"></i> Save
+                    </button>    
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -203,7 +195,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="smallmodalLabel">Update Modal</h5>
+                <h5 class="modal-title" id="smallmodalLabel">Update Department</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -211,10 +203,6 @@
             <div class="modal-body" id="data">
                 <!-- ini diisi form edit, dari editDepatment-->
             </div>
-            <!--            <div class="modal-footer">
-            
-                            <button type="button" class="btn btn-primary">Confirm</button>
-                        </div>-->
         </div>
     </div>
 </div>

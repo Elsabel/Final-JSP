@@ -72,9 +72,11 @@
             </select>
         </div>
     </div>
-    <center>
-        <button class="btn btn-primary" type="submit" name="submit" onclick="success()"><i class="fas fa-save"></i> Save</button>
-        <!--<input type="submit" name="submit" value="Save" class="btn btn-primary"/>-->
-        <a href="locationServlet?action=list" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-window-close"></i> Cancel</a>
-    </center>
 </form>
+<div class="modal-footer">
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary btn-sm" style="float: right;">
+            <i class="fas fa-save"></i> Save
+        </button>    
+    </div>
+</div>

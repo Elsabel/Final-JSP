@@ -83,10 +83,10 @@
                         <div class="col-12">
                             <center><h2>Employee Data</h2></center><br><br>
                             <!--<div class="table-responsive table--no-card m-b-30">-->
-                            <table>
-                                <!--<table id="myTable" class="table table-borderless table-striped table-earning">-->
-                                <% List<Employee> employee = (ArrayList<Employee>) request.getAttribute("employee"); %>
-                                <thead>
+                            <table id="listItem" class="table table-borderless table-striped table-earning">
+                            <!--<table id="myTable" class="table table-borderless table-striped table-earning">-->
+                            <% List<Employee> employee = (ArrayList<Employee>) request.getAttribute("employee"); %>
+                           <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>NAME</th>
@@ -121,13 +121,21 @@
                                                 }
                                             %>
                                         </td>
-                                        <td><%= em.getJobId().getJobTitle()%></td>
-                                        <td><%= em.getManagerId().getFirstName()%></td>
+                                        <td><%= em.getJobId().getJobTitle()%></td>                                      
+                                        <td>
+                                            <%
+                                                if (em.getManagerId() == null) {
+                                                    out.print("-");
+                                                } else {
+                                                    out.print(em.getManagerId().getFirstName());
+                                                }
+                                            %>
+                                        </td>
                                         <td><%= em.getDepartmentId().getDepartmentName()%></td>
                                     </tr>
-                                    <% }%>
-                                </tbody>
-                            </table>
+                                <% }%>
+                            </tbody>
+                        </table>
                             <!--</div>-->
                         </div>
                     </div>
@@ -142,3 +150,4 @@
 
     </body>
 </html>
+ 

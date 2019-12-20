@@ -19,7 +19,7 @@
             <input type="text" id="idDepartment" name="idDepartment" value="<%= request.getAttribute("idDepartment")%>" placeholder="Enter Department Id" class="form-control" readonly>
         </div>
     </div>
-        
+
     <div class="row form-group">
         <div class="col col-md-3">
             <label for="hf-password" class=" form-control-label">Name</label>
@@ -48,8 +48,8 @@
             </select>
         </div>
     </div>
-            
-    <% List<Location> locations = (ArrayList<Location>) request.getAttribute("locations"); %>
+
+    <% List<Location> locations = (ArrayList<Location>) request.getAttribute("locations");%>
     <div class="row form-group">
         <div class="col col-md-3">
             <label for="locationId" class=" form-control-label">City</label>
@@ -68,8 +68,11 @@
             </select>
         </div>
     </div>
-    <center>
-         <button class="btn btn-primary" type="submit" name="submit"><i class="fas fa-save"></i> Save</button>
-        <button type="button" data-dismiss="modal"class="btn btn-danger"> <i class="fas fa-window-close"></i> Cancel</button>
-    </center>
 </form>
+<div class="modal-footer">
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary btn-sm" style="float: right;">
+            <i class="fas fa-save"></i> Save
+        </button>    
+    </div>
+</div>

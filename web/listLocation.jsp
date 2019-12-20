@@ -63,17 +63,18 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-12 mb-3">
                                 <h3>Location Data</h3>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-3">
                                 <button data-toggle="modal" data-target="#additem" class="btn btn-primary btn-block">
                                     <i class="fas fa-plus"></i> Add Item</button>
                             </div>
-                             <button class="au-btn au-btn-icon au-btn--blue">
-                                 <a href="locationServlet?action=print" 
-                                       data-toggle="tooltip" data-placement="top" 
-                                       title="Print"><i class="fas fa-print" style=""></i>Print</a></button>
+                            <div class="col-3 offset-6">
+                                <a href="regionServlet?action=print" 
+                                   data-toggle="tooltip" data-placement="top" class="btn btn-secondary btn-block"
+                                   title="Print"><i class="fas fa-print" style=""></i> Print</a>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -86,7 +87,7 @@
                                     <th>City</th>
                                     <th>State Province</th>
                                     <th>Country Name</th>
-                                    <th class="text-right" width="10%">Action</th>
+                                    <th class="text-center" width="10%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -104,7 +105,7 @@
                                         }
                                         %></td>
                                     <td><%= loc.getCountryId().getCountryName()%></td>
-                                    <td class="text-right">
+                                    <td class="text-center">
 
                                         <a href="<%= loc.getLocationId()%>" class="view_data" 
                                            data-toggle="modal" id="<%= loc.getLocationId()%>" data-target="#editModal">
@@ -187,17 +188,14 @@
                             </select>
                         </div>
                     </div>
-
-                    <center>
-                        <button class="btn btn-primary" type="submit" name="submit"><i class="fas fa-save" onclick="success()"></i> Save</button>
-                        <!--<input type="submit" name="submit" value="Save" class="btn btn-primary"/>-->
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    </center>
                 </form>
             </div>
             <div class="modal-footer">
-
-                <!--<button type="button" class="btn btn-primary">Confirm</button>-->
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-sm" style="float: right;">
+                        <i class="fas fa-save"></i> Save
+                    </button>    
+                </div>
             </div>
         </div>
     </div>
@@ -221,8 +219,6 @@
             <div class="modal-body" id="data">
             </div>
             <!-- selesai konten dinamis -->
-            <div class="modal-footer">
-            </div>
         </div>
     </div>
 </div>

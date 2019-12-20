@@ -66,17 +66,18 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-12 mb-3">
                                 <h3>Employee Data</h3>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-3">
                                 <button data-toggle="modal" data-target="#additem" class="btn btn-primary btn-block">
                                     <i class="fas fa-plus"></i> Add Item</button>
                             </div>
-                               <button class="au-btn au-btn-icon au-btn--blue">
-                                 <a href="employeeServlet?action=print" 
-                                       data-toggle="tooltip" data-placement="top" 
-                                       title="Print"><i class="fas fa-print" style=""></i>Print</a></button>
+                            <div class="col-3 offset-6">
+                                <a href="regionServlet?action=print" 
+                                   data-toggle="tooltip" data-placement="top" class="btn btn-secondary btn-block"
+                                   title="Print"><i class="fas fa-print" style=""></i> Print</a>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -85,13 +86,13 @@
                             <% List<Employee> employee = (ArrayList<Employee>) request.getAttribute("employee"); %>
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>NAME</th>
+                                    <th>Id</th>
+                                    <th>Name</th>
 
-                                    <th>EMAIL</th>
-                                    <th>SALARY</th>
+                                    <th>Email</th>
+                                    <th>Salary</th>
 
-                                    <th class="text-right">ACTION</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -103,15 +104,15 @@
                                     <td><%= em.getEmail()%></td>
                                     <td><%= em.getSalary()%></td>
 
-                                    <td class="text-right">
+                                    <td class="text-center">
                                         <a href="employeeServlet?action=detail&id=<%=em.getEmployeeId()%> "
                                            data-toggle="tooltip" data-placement="top" title="Details"><i class="fas fa-list-alt"></i></a>
-
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="<%=em.getEmployeeId()%>" class="view_data" 
                                            data-toggle="modal" id="<%=em.getEmployeeId()%>" data-target="#editModal">
                                             <i class="fas fa-edit fa-lg" style="color:#26a65b;"></i>
                                         </a>
-
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="employeeServlet?action=delete&id=<%= em.getEmployeeId()%> " 
                                            class="tombol-hapus" data-toogle="tooltip" title="Delete">
                                             <i class="fas fa-trash"style="color:#f03434;"></i></a>
@@ -126,8 +127,8 @@
         </div>
     </div>
 </div>
-                            
-                            
+
+
 <!-- modal add item -->
 <div class="modal fade" id="additem" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -138,7 +139,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-             <div class="modal-body">
+            <div class="modal-body">
                 <div class="card">
                     <div class="card-body card-block">
                         <form action="employeeServlet?action=insert" method="post" class="form-horizontal">
@@ -239,34 +240,29 @@
                                 <div class="col-12 col-md-9">
                                     <select name="departmentId" id="departmentId" class="form-control-sm form-control">
                                         <% List<Department> departmentId = (ArrayList<Department>) request.getAttribute("departmentId"); %>
-
                                         <option value="0">Please select</option>
                                         <%for (Department dm : departmentId) {%>
                                         <option value="<%= dm.getDepartmentId()%>"><%= dm.getDepartmentName()%></option>
                                         <%}%>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-dot-circle-o"></i> Save
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">
-                                    <i class="fa fa-times-circle"></i> Cancel
-                                </button>
-                            </div>
+                            </div>                           
                         </form>
-
                     </div>
-
+                    <div class="modal-footer">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-sm" style="float: right;">
+                                <i class="fas fa-save"></i> Save
+                            </button>    
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-                                    
-                                    
+
+
 <!-- memulai modal nya. pada id="$myModal" harus sama dengan data-target="#myModal" pada tombol di atas -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
@@ -274,15 +270,12 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="myModalLabel">Edit Employee</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                   
+
                 </button>
             </div>
             <div class="modal-body" id="data">
 
             </div>
-
-            <div class="modal-footer">
-                    </div>
         </div>
     </div>
 </div>
@@ -348,7 +341,4 @@
         });
     });
 </script>
-
-
-
 <jsp:include page="templates/footer.jsp"></jsp:include>

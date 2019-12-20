@@ -62,17 +62,18 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-12 mb-3">
                                 <h3>Region Data</h3>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-3">
                                 <button data-toggle="modal" data-target="#additem" class="btn btn-primary btn-block">
                                     <i class="fas fa-plus"></i> Add Item</button>
-                                    
                             </div>
-                            <a href="regionServlet?action=print" 
-                                       data-toggle="tooltip" data-placement="top" class="btn btn-primary btn-block"
-                                       title="Print"><i class="fas fa-print" style=""></i> Print</a>
+                            <div class="col-3 offset-6">
+                                <a href="regionServlet?action=print" 
+                                   data-toggle="tooltip" data-placement="top" class="btn btn-secondary btn-block"
+                                   title="Print"><i class="fas fa-print" style=""></i> Print</a>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -82,7 +83,7 @@
                                 <tr>
                                     <th>Region ID</th>
                                     <th>Region Name</th>
-                                    <th class="text-right">Action</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,24 +92,16 @@
                                 <tr>
                                     <td><%=region.getRegionId()%></td>
                                     <td><%= region.getRegionName()%></td>
-                                    <td class="text-right">
+                                    <td class="text-center">
                                         <a href="<%= region.getRegionId()%>" class="view_data" 
                                            data-toggle="modal" id="<%= region.getRegionId()%>" data-target="#editModal">
                                             <i class="fas fa-edit fa-lg" style="color:#26a65b;"></i>
                                         </a>
-
-                                        <a href="regionServlet?action=delete&id=<%= region.getRegionId()%> " 
-                                            data-toogle="tooltip" title="Delete" class="btnDelete">
-                                           <i class="fas fa-trash fa-lg" style="color:#f03434;"></i>
-                                        </a>
-
-<!--                                        <a href="regionServlet?action=edit&id=<%= region.getRegionId()%>" 
-                                           data-toggle="tooltip" data-placement="top" 
-                                           title="Edit"><i class="fas fa-edit fa-lg" style="color:#26a65b;"></i></a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="regionServlet?action=delete&id=<%=region.getRegionId()%> " 
-                                           data-toggle="tooltip" data-placement="top" 
-                                           title="Delete"><i class="fas fa-trash fa-lg" style="color:#f03434;"></i></a>-->
+                                        <a href="regionServlet?action=delete&id=<%= region.getRegionId()%> " 
+                                           data-toogle="tooltip" title="Delete" class="btnDelete">
+                                            <i class="fas fa-trash fa-lg" style="color:#f03434;"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 <% }%>
@@ -143,15 +136,16 @@
                             <input type="text" id="nameRegion" name="nameRegion" placeholder="Enter Region Name..." class="form-control">
                         </div>
                     </div>
-                    <center>
-                        <input type="submit" name="submit" value="Save" class="btn btn-primary"/>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    </center>
                 </form>
             </div>
             <div class="modal-footer">
-
-                <!--<button type="button" class="btn btn-primary">Confirm</button>-->
+                <div class="modal-footer">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary btn-sm" style="float: right;">
+                            <i class="fas fa-save"></i> Save
+                        </button>    
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -165,7 +159,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Edit Location</h5>
+                <h5 class="modal-title" id="myModalLabel">Edit Region</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -174,9 +168,7 @@
             <!-- lihat id="data_siswa", ini yang di pangging pada ajax di bawah -->
             <div class="modal-body" id="data">
             </div>
-            <!-- selesai konten dinamis -->
-            <div class="modal-footer">
-            </div>
+            <!-- selesai konten dinamis -->  
         </div>
     </div>
 </div>

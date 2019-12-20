@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import daos.GeneralDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 import models.Job;
 import org.apache.taglibs.standard.functions.Functions;
 import tools.HibernateUtil;
@@ -26,6 +28,10 @@ import tools.HibernateUtil;
  * @author USER
  */
 public class JobServlet extends HttpServlet {
+
+    private static void JOptionPane(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     private GeneralDao dao;
 
@@ -148,7 +154,8 @@ public class JobServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("listJob.jsp");
         rd.forward(request, response);
     }
-     private void print(HttpServletRequest request, HttpServletResponse response)
+
+    private void print(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         List<Job> jobs = this.dao.select("Job");
         request.setAttribute("jobs", jobs);
@@ -172,7 +179,7 @@ public class JobServlet extends HttpServlet {
     }
 
     static String remVowel(String str) {
-        Character vowels[] = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
+        Character vowels[] = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U', ' ', '_', '-', '&'};
         List<Character> al = Arrays.asList(vowels);
         StringBuilder sb = new StringBuilder(str);
         for (int i = 0; i < sb.length(); i++) {
@@ -183,7 +190,6 @@ public class JobServlet extends HttpServlet {
         }
         return sb.toString();
     }
-
     /**
      * /**
      * Returns a short description of the servlet.
