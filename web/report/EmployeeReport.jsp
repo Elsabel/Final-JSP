@@ -30,8 +30,8 @@
 
         <!-- Custom CSS -->
         <link href="assets/dist/css/style.min.css" rel="stylesheet">
-        
-        
+
+
         <script src="assets/assets/libs/jquery/dist/jquery.min.js"></script>
         <!--Wave Effects -->
         <script src="assets/dist/js/waves.js"></script>
@@ -108,9 +108,9 @@
                                         <td><%= em.getEmail()%></td>
                                         <td><%= em.getSalary()%></td>
                                         <td><%
-                                            DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
-                                        %>
-                                        <%= df.format(em.getHireDate())%></td>                              
+                                            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                                            %>
+                                            <%= df.format(em.getHireDate())%></td>                              
                                         <td><%= em.getPhoneNumber()%></td>
                                         <td>
                                             <%
@@ -122,7 +122,12 @@
                                             %>
                                         </td>
                                         <td><%= em.getJobId().getJobTitle()%></td>
+                                        <% if (em.getManagerId()== null) { %>
+                                           <td>-</td>
+                                        <% } else { %>
                                         <td><%= em.getManagerId().getFirstName()%></td>
+                                        <% } %>
+                                        
                                         <td><%= em.getDepartmentId().getDepartmentName()%></td>
                                     </tr>
                                     <% }%>

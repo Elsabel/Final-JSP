@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package servlets;
+
 import daos.GeneralDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,6 +22,7 @@ import tools.BCrypt;
 import tools.HibernateUtil;
 import tools.HtmlSendMail;
 import tools.SendMail;
+import com.captcha.botdetect.web.servlet.Captcha;
 
 /**
  *
@@ -155,7 +157,6 @@ public class UserAccountServlet extends HttpServlet {
             rd.forward(request, response);
         }
     }
-    
 
 //   private boolean login1(HttpServletRequest request, HttpServletResponse response)
 //            throws SQLException, IOException {
@@ -188,6 +189,7 @@ public class UserAccountServlet extends HttpServlet {
         dao.delete(new Region(id));
         response.sendRedirect("UserAccountServlet?action=list");
     }
+
     private void logout(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         response.sendRedirect("login.jsp");
@@ -200,30 +202,66 @@ public class UserAccountServlet extends HttpServlet {
         String password = request.getParameter("password");
         String password1 = request.getParameter("password1");
         UserAccount account = (UserAccount) this.dao.selectByField("UserAccount", "username", username);
-        if (account != null) { //cek username
-            request.setAttribute("flash", "Failed");
-            request.setAttribute("message", "username");
-            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
-            rd.forward(request, response);
-        } else {
-            if (password.equals(password1)) { //cek password
-                HtmlSendMail hsm = new HtmlSendMail();
+        String terms = request.getParameter("terms");
 
-                request.setAttribute("flash", "Registered");
-                dao.save(new UserAccount(max(), username, BCrypt.hashpw(password, BCrypt.gensalt(5)), email, 0));
-//                ambil id yang didaftarkan berdasarkan username
-                UserAccount userAccount = (UserAccount) dao.selectByField("UserAccount", "username", username);
-                hsm.send(email, userAccount.getId().toString());
-                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-                rd.forward(request, response);
-//            response.sendRedirect("loginView.jsp");
-            } else {
+        String cap = request.getParameter("captchaCode");
+        Captcha captcha = Captcha.load(request, "exampleCaptcha");
+//        if (cap.equalsIgnoreCase(request.getMethod())) {
+        // validate the Captcha to check we're not dealing with a bot
+        boolean isHuman = captcha.validate(cap);
+//        if (terms == null) {
+//            request.setAttribute("flash", "Failed");
+//            request.setAttribute("message", "terms");
+//            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+//            rd.forward(request, response);
+//        } else {
+//            request.setAttribute("flash", "Failed");
+//            request.setAttribute("message", "terms1");
+//            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+//            rd.forward(request, response);
+//        }
+        if (isHuman) {
+            if (account != null) { //cek username
                 request.setAttribute("flash", "Failed");
-                request.setAttribute("message", "password");
+                request.setAttribute("message", "username");
                 RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
                 rd.forward(request, response);
+            } else if (terms == null) {
+                request.setAttribute("flash", "Failed");
+                request.setAttribute("message", "terms");
+                RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+                rd.forward(request, response);
+            } else {
+                if (password.equals(password1)) { //cek password
+                    HtmlSendMail hsm = new HtmlSendMail();
+
+                    request.setAttribute("flash", "Registered");
+                    dao.save(new UserAccount(max(), username, BCrypt.hashpw(password, BCrypt.gensalt(5)), email, 0));
+//                ambil id yang didaftarkan berdasarkan username
+                    UserAccount userAccount = (UserAccount) dao.selectByField("UserAccount", "username", username);
+                    hsm.send(email, userAccount.getId().toString());
+                    RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+                    rd.forward(request, response);
+//            response.sendRedirect("loginView.jsp");
+                } else {
+                    request.setAttribute("flash", "Failed");
+                    request.setAttribute("message", "password");
+                    RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+                    rd.forward(request, response);
+                }
             }
+//            System.out.println("berhasil");
+//            request.setAttribute("flash", "captchanya kebaca");
+//            request.setAttribute("message", "captcha1");
+//            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+//            rd.forward(request, response);
+        } else {
+            request.setAttribute("flash", "Failed");
+            request.setAttribute("message", "captcha");
+            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+            rd.forward(request, response);
         }
+
     }
 
     private void update(HttpServletRequest request, HttpServletResponse response)

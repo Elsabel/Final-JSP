@@ -75,7 +75,7 @@
                             </div>
                                <button class="au-btn au-btn-icon au-btn--blue">
                                  <a href="employeeServlet?action=print" 
-                                       data-toggle="tooltip" data-placement="top" 
+                                       data-toggle="tooltip" target="_BLANK" data-placement="top" 
                                        title="Print"><i class="fas fa-print" style=""></i>Print</a></button>
                         </div>
                     </div>

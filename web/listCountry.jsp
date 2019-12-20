@@ -63,17 +63,22 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-12 mb-3">
                                 <h3>Country Data</h3>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-3">
                                 <button data-toggle="modal" data-target="#additem" class="btn btn-primary btn-block">
                                     <i class="fas fa-plus"></i> Add Item</button>
                             </div>
-                             <button class="au-btn au-btn-icon au-btn--blue">
+                            <div class="col-3 offset-6">
+                                <a href="countryServlet?action=print" 
+                                   data-toggle="tooltip" data-placement="top" class="btn btn-secondary btn-block"
+                                   title="Print"><i class="fas fa-print" style=""></i> Print</a>
+                            </div>
+<!--                             <button class="au-btn au-btn-icon au-btn--blue">
                                  <a href="countryServlet?action=print" 
                                        data-toggle="tooltip" data-placement="top" 
-                                       title="Print"><i class="fas fa-print" style=""></i>Print</a></button>
+                                       title="Print"><i class="fas fa-print" style=""></i>Print</a></button>-->
                         </div>
                     </div>
                     <div class="card-body">
@@ -97,13 +102,15 @@
                                     </td>
                                     <td class="text-right">
                                         <a href="<%= country.getCountryId()%>" class="view_data" 
-                                          data-toggle="modal" id="<%= country.getCountryId()%>"data-target="#editModal">
-                                          <i class="fas fa-edit fa-lg" style="color:#26a65b;"></i>
+                                           data-toggle="modal" id="<%= country.getCountryId()%>" data-target="#editModal">
+                                            <span class="fas fa-edit fa-lg" data-toggle="tooltip" title="Edit" 
+                                                  style="color:#26a65b;"></span>
                                         </a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="countryServlet?action=delete&id=<%= country.getCountryId()%> " 
-                                           class="delete-btn tombol-hapus" data-toogle="modal" title="Delete">
-                                        <i class="fas fa-trash fa-lg" style="color:#f03434;"></i>
+                                        <a href="countryServlet?action=delete&id=<%= country.getCountryId()%>" 
+                                           class="tombol-hapus">
+                                            <span class="fas fa-trash fa-lg" data-toggle="tooltip" title="Delete" 
+                                                  style="color:#f03434;"></span>
                                         </a>
                                     </td>
                                 </tr>

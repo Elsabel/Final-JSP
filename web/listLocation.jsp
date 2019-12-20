@@ -239,7 +239,7 @@
         );
     });
 
-    $('.btnDelete').on('click', function () {
+    $('.tombol-hapus').on('click', function () {
         event.preventDefault();
         const href = $(this).attr("href");
         swal({

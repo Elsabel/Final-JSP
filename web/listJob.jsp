@@ -64,17 +64,18 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-12 mb-3">
                                 <h3>Job Data</h3>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-3">
                                 <button data-toggle="modal" data-target="#additem" class="btn btn-primary btn-block">
                                     <i class="fas fa-plus"></i> Add Item</button>
                             </div>
-                             <button class="au-btn au-btn-icon au-btn--blue">
-                                 <a href="jobServlet?action=print" 
-                                       data-toggle="tooltip" data-placement="top" 
-                                       title="Print"><i class="fas fa-print" style=""></i>Print</a></button>
+                            <div class="col-3 offset-6">
+                                <a href="jobServlet?action=print" 
+                                   data-toggle="tooltip" data-placement="top" class="btn btn-secondary btn-block"
+                                   title="Print"><i class="fas fa-print" style=""></i> Print</a>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -97,14 +98,15 @@
                                     <td><%=job.getMinSalary()%></td>
                                     <td><%= job.getMaxSalary()%></td>
                                     <td class="text-right">
-                                        <a href="<%=job.getJobId()%>" class="view_data"
-                                           data-toggle="modal" data-placement="top" id="<%=job.getJobId()%>" data-target="#editModal"
-                                           title="Edit"><i class="fas fa-edit fa-lg" style="color:#26a65b;"></i>                                     
+                                        <a href="<%=job.getJobId()%>" class="view_data" 
+                                           data-toggle="modal" id="<%=job.getJobId()%>" data-target="#editModal">
+                                            <span class="fas fa-edit fa-lg" data-toggle="tooltip" title="Edit" 
+                                                  style="color:#26a65b;"></span>
                                         </a>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="jobServlet?action=delete&jobId=<%= job.getJobId()%>&jobTitle=<%=job.getJobTitle()%>" 
-                                           class="delete-btn btnDelete" data-toogle="modal" title="Delete">
-                                            <i class="fas fa-trash fa-lg" style="color:#f03434;"></i>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <a href="jobServlet?action=delete&jobId=<%= job.getJobId()%>&jobTitle=<%=job.getJobTitle()%>" class="btnDelete">
+                                            <span class="fas fa-trash fa-lg" data-toggle="tooltip" title="Delete" 
+                                                  style="color:#f03434;"></span>
                                         </a>
                                     </td>
                                 </tr>

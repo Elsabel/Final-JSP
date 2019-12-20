@@ -32,6 +32,10 @@
         <servlet-name>UserAccountServlet</servlet-name>
         <servlet-class>servlets.UserAccountServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BotDetect Captcha</servlet-name>
+        <servlet-class>com.captcha.botdetect.web.servlet.CaptchaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegionServlets</servlet-name>
         <url-pattern>/regionServlets</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>UserAccountServlet</servlet-name>
         <url-pattern>/userAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BotDetect Captcha</servlet-name>
+        <url-pattern>/botdetectcaptcha</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

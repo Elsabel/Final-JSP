@@ -62,17 +62,19 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-12 mb-3">
                                 <h3>Region Data</h3>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-3">
                                 <button data-toggle="modal" data-target="#additem" class="btn btn-primary btn-block">
                                     <i class="fas fa-plus"></i> Add Item</button>
-                                    
+
                             </div>
-                            <a href="regionServlet?action=print" 
-                                       data-toggle="tooltip" data-placement="top" class="btn btn-primary btn-block"
-                                       title="Print"><i class="fas fa-print" style=""></i> Print</a>
+                            <div class="col-3 offset-6">
+                                <a href="regionServlet?action=print" 
+                                   data-toggle="tooltip" data-placement="top" class="btn btn-secondary btn-block"
+                                   title="Print"><i class="fas fa-print" style=""></i> Print</a>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -92,23 +94,27 @@
                                     <td><%=region.getRegionId()%></td>
                                     <td><%= region.getRegionName()%></td>
                                     <td class="text-right">
+
+
                                         <a href="<%= region.getRegionId()%>" class="view_data" 
                                            data-toggle="modal" id="<%= region.getRegionId()%>" data-target="#editModal">
+                                            <span class="fas fa-edit fa-lg" data-toggle="tooltip" title="Edit" 
+                                                  style="color:#26a65b;"></span>
+                                        </a>
+<!--                                        <a href="<%= region.getRegionId()%>" class="view_data" 
+                                           data-toggle="modal" title="Edit" 
+                                           id="<%= region.getRegionId()%>" data-target="#editModal">
                                             <i class="fas fa-edit fa-lg" style="color:#26a65b;"></i>
+                                        </a>-->
+                                        &nbsp;&nbsp;&nbsp;
+                                        <a href="regionServlet?action=delete&id=<%= region.getRegionId()%>" class="btnDelete">
+                                            
+                                            <span class="fas fa-trash fa-lg" data-toggle="tooltip" title="Delete" 
+                                                  style="color:#f03434;"></span>
                                         </a>
+                                        <!-- HTML to write -->
 
-                                        <a href="regionServlet?action=delete&id=<%= region.getRegionId()%> " 
-                                            data-toogle="tooltip" title="Delete" class="btnDelete">
-                                           <i class="fas fa-trash fa-lg" style="color:#f03434;"></i>
-                                        </a>
 
-<!--                                        <a href="regionServlet?action=edit&id=<%= region.getRegionId()%>" 
-                                           data-toggle="tooltip" data-placement="top" 
-                                           title="Edit"><i class="fas fa-edit fa-lg" style="color:#26a65b;"></i></a>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="regionServlet?action=delete&id=<%=region.getRegionId()%> " 
-                                           data-toggle="tooltip" data-placement="top" 
-                                           title="Delete"><i class="fas fa-trash fa-lg" style="color:#f03434;"></i></a>-->
                                     </td>
                                 </tr>
                                 <% }%>

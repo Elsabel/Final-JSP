@@ -45,7 +45,7 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
     <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
     <property name="hibernate.connection.username">system</property>
-    <property name="hibernate.connection.password">sys</property>
+    <property name="hibernate.connection.password">rizky</property>
     <property name="hibernate.format_sql">true</property>
     <property name="hibernate.default_schema">HR</property>
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
