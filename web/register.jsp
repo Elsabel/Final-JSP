@@ -54,6 +54,7 @@
                                     }
                                  %>
                                  <input class="au-input au-input--full" type="text" id="username" name="username" value="<%= name %>" placeholder="Username">
+                                 <span>Username Check</span>
                             </div>
                             <div class="form-group">
                                  <% String mail;
@@ -64,7 +65,7 @@
                                         mail = cekMail ;
                                     }
                                  %>
-                                <input class="au-input au-input--full" type="email" id="email" name="email" value="<%= mail %>" placeholder="Email">
+                                 <input class="au-input au-input--full" type="email" id="email" name="email" value="<%= mail %>" placeholder="Email">
                             </div>
                             <div class="form-group">
                                 <input class="au-input au-input--full" type="password" id="password" name="password" placeholder="Password">
@@ -89,7 +90,7 @@
                 </div>
             </div>
         </div>
-
+        </div>>
     </div>
     <jsp:include page="assets/login/footer.jsp"></jsp:include>
 

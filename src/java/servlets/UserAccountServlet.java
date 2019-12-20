@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package servlets;
+
 import daos.GeneralDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import models.Region;
 import models.UserAccount;
 import tools.BCrypt;
@@ -90,6 +92,7 @@ public class UserAccountServlet extends HttpServlet {
                     update(request, response);
                     break;
                 default:
+                    
                     login(request, response);
                     break;
             }
@@ -126,6 +129,7 @@ public class UserAccountServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        HttpSession session = request.getSession();
         UserAccount account = (UserAccount) this.dao.selectByField("UserAccount", "username", username);
         if (account != null) {
             if (account.getStatus() == 0) { //cek status active or not
@@ -135,8 +139,8 @@ public class UserAccountServlet extends HttpServlet {
                 rd.forward(request, response);
             } else {
                 if (BCrypt.checkpw(password, account.getPassword())) {
-                    request.setAttribute("id", account.getId().toString());
-                    request.setAttribute("username", account.getUsername());
+                    session.setAttribute("id", account.getId().toString());
+                    session.setAttribute("username", account.getUsername());
                     RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                     rd.forward(request, response);
 //            response.sendRedirect("mainView.jsp");
@@ -155,7 +159,6 @@ public class UserAccountServlet extends HttpServlet {
             rd.forward(request, response);
         }
     }
-    
 
 //   private boolean login1(HttpServletRequest request, HttpServletResponse response)
 //            throws SQLException, IOException {
@@ -188,9 +191,17 @@ public class UserAccountServlet extends HttpServlet {
         dao.delete(new Region(id));
         response.sendRedirect("UserAccountServlet?action=list");
     }
+
     private void logout(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        response.sendRedirect("login.jsp");
+
+        HttpSession session = request.getSession(false);
+
+        if (session.getAttribute("username") != null) {
+            session.removeAttribute("username");
+            response.sendRedirect("login.jsp");
+        }
+
     }
 
     private void insert(HttpServletRequest request, HttpServletResponse response)
