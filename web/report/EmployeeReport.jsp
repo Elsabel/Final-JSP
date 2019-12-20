@@ -122,7 +122,15 @@
                                             %>
                                         </td>
                                         <td><%= em.getJobId().getJobTitle()%></td>
-                                        <td><%= em.getManagerId().getFirstName()%></td>
+                                          <td>
+                                        <%
+                                                if (em.getManagerId() == null) {
+                                                    out.print("-");
+                                                } else {
+                                                    out.print(em.getManagerId().getFirstName());
+                                                }
+                                            %>
+                                            </td>
                                         <td><%= em.getDepartmentId().getDepartmentName()%></td>
                                     </tr>
                                     <% }%>
