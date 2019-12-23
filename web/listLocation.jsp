@@ -13,6 +13,7 @@
 <jsp:include page="templates/topbar.jsp"></jsp:include>
 <jsp:include page="templates/sidebar.jsp"></jsp:include>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link href="assets/dist/css/button.css" rel="stylesheet" type="text/css"/>
 <!-- ============================================================== -->
 <!-- Page wrapper  -->
 <!-- ============================================================== -->
@@ -66,14 +67,14 @@
                             <div class="col-md-12 mb-3">
                                 <h3>Location Data</h3>
                             </div>
-                            <div class="col-3">
-                                <button data-toggle="modal" data-target="#additem" class="btn btn-primary btn-block">
-                                    <i class="fas fa-plus"></i> Add Item</button>
+                            <div class="col-1">
+                                <button data-toggle="modal" data-target="#additem" class="btn btn-block"  title="Add">
+                                    <i class="fas fa-plus" style="color:#000000"></i></button>
                             </div>
-                            <div class="col-3 offset-6">
+                            <div class="col-1 offset-10">
                                 <a href="regionServlet?action=print" 
-                                   data-toggle="tooltip" data-placement="top" class="btn btn-secondary btn-block"
-                                   title="Print"><i class="fas fa-print" style=""></i> Print</a>
+                                   data-toggle="tooltip" data-placement="top" class="btn btn-block"
+                                   title="Print"><i class="fas fa-print"  style="color:#000000"></i></a>
                             </div>
                         </div>
                     </div>
